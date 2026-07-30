@@ -2,7 +2,19 @@ aid: alliance-resource-partners
 url: https://raw.githubusercontent.com/api-evangelist/alliance-resource-partners/refs/heads/main/apis.yml
 name: Alliance Resource Partners
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/alliance-resource-partners.png
 tags:
   - Coal
   - Mining
