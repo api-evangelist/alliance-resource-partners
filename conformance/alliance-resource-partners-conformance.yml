@@ -1,0 +1,73 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  openapi/_original/alliance-resource-partners-content-openapi.yml, derived from
+  https://www.arlp.com/wp-json/, plus live response headers observed 2026-09-01
+note: >-
+  Cross-cutting standards the reachable Alliance Resource Partners surface does and does not conform to.
+  ARLP publishes no compliance program, no certifications and no trust center, so no Compliance pointer is
+  emitted. Domain-standard conformance is recorded as not-applicable rather than false: coal production and
+  oil-and-gas mineral royalties have no API interchange standard that a corporate content API could declare,
+  and the reward-only rule means an absent standard is not a penalty.
+standards:
+  - id: openapi
+    conforms: true
+    evidence: >-
+      Derived OpenAPI 3.1.0 at openapi/_original/alliance-resource-partners-content-openapi.yml. Derived by
+      API Evangelist from ARLP's own live route discovery document; ARLP does not itself publish OpenAPI.
+    published_by_provider: false
+  - id: rfc8288-web-linking
+    conforms: true
+    evidence: 'Link header observed: <https://www.arlp.com/wp-json/wp/v2/pages?per_page=2&page=2>; rel="next"'
+  - id: oembed-1.0
+    conforms: true
+    evidence: /oembed/1.0/embed returns a valid oEmbed 1.0 rich response; captured at examples/alliance-resource-partners-oembed.json
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors are the WordPress envelope {code,message,data:{status}} on application/json, not
+      application/problem+json. Observed live on four distinct error codes.
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 security scheme; /.well-known/oauth-authorization-server returns 404.
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on www.arlp.com.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation header observed on any response.
+  - id: json-api
+    conforms: false
+    evidence: Responses are plain JSON objects/arrays with a HAL-like _links map, not JSON:API documents.
+  - id: pagination
+    conforms: true
+    evidence: page/per_page/offset parameters plus X-WP-Total, X-WP-TotalPages and RFC 8288 Link headers.
+  - id: idempotency
+    conforms: na
+    evidence: Read-only reachable surface; every operation is a GET. See conventions/.
+  - id: cors
+    conforms: true
+    evidence: 'Access-Control-Expose-Headers: X-WP-Total, X-WP-TotalPages, Link observed on live responses.'
+domain_standard:
+  applicable: false
+  sector: Coal production, oil and gas mineral royalties, energy
+  detail: >-
+    ARLP's markets (thermal and metallurgical coal supply, oil and gas mineral and royalty interests) move on
+    bilateral contracts, rail and barge logistics paperwork and SEC filings, not on a machine-readable API
+    interchange standard. There is no SCIM, OData, OpenRTB, FHIR, ISO 20022, X12 or comparable domain schema
+    that a corporate content API could declare, so none is claimed. The one interchange standard adjacent to
+    ARLP's business - ANSI X12 EDI for customer and logistics documents - is not exposed on any public
+    endpoint and is not asserted here.
+compliance:
+  program_published: false
+  certifications: []
+  detail: >-
+    No trust center, no SOC 2 / ISO 27001 / PCI / HIPAA / FedRAMP claim, and no compliance page on arlp.com.
+    ARLP's public regulatory disclosure is SEC filings and MSHA mine-safety reporting, neither of which is an
+    information-security certification.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

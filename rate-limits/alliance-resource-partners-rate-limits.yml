@@ -3,34 +3,71 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Alliance Resource Partners
 providerId: alliance-resource-partners
+generated: '2026-09-01'
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-09-01'
+method: probed
+source: >-
+  https://www.arlp.com/robots.txt and live response headers observed on https://www.arlp.com/wp-json/ on
+  2026-09-01
+reconciled: true
 tags:
   - Coal
   - Mining
   - Energy
   - Rate Limiting
-description: Alliance Resource Partners does not publish public API documentation or rate-limit policies.
-  Any throttling behavior would be defined inside bilateral data-integration agreements.
-sources:
-  - https://www.arlp.com
-notes: No public rate-limit documentation; ARLP does not operate a public API surface.
+description: >-
+  Alliance Resource Partners documents no API rate limits, because it runs no developer program. The
+  reachable surface - the read-only WordPress REST API on www.arlp.com - returns NO rate-limit response
+  headers at all: no X-RateLimit-*, no RateLimit-*, no Retry-After was observed on any 200 response. Two
+  real throughput signals do exist on the host and are recorded below: a published Crawl-delay of 10 seconds
+  in robots.txt, and an intermittent Cloudflare bot-management challenge that returns HTTP 403 with an
+  "Attention Required! | Cloudflare" body on rapid sequential requests. Neither is an API rate-limit
+  contract; both are what a consumer will actually hit.
+notes: >-
+  Rewritten 2026-09-01. This file previously carried a "Bilateral-Negotiated Throughput" limit written by the
+  2026-05-04 bulk sweep, which described an agreement ARLP does not publish. limit_count is 0 - a documented
+  zero, not an unchecked field. The per-request page-size ceiling below is a real, enforced constraint read
+  off a live 400 response, but it is a pagination bound, not a rate limit, and it is recorded as such.
+limit_count: 0
+limits: []
+response_headers:
+  rate_limit_headers: []
+  retry_after: false
+  observed_on: https://www.arlp.com/wp-json/wp/v2/pages?per_page=2
+  note: Only pagination headers (X-WP-Total, X-WP-TotalPages, Link) and cache headers are returned.
 responseCodes:
-  throttled: 429
-limits:
-  - name: Bilateral-Negotiated Throughput
-    scope: contract
-    metric: varies
-    limit: per-agreement; not publicly documented
+  throttled: null
+  bot_challenge: 403
+observed_throughput_signals:
+  - kind: robots-crawl-delay
+    value: 10
+    unit: seconds
+    source: https://www.arlp.com/robots.txt
+    status: 200
+    detail: 'The first line of robots.txt is "Crawl-delay: 10", ahead of the Yoast block.'
+  - kind: edge-bot-challenge
+    value: 403
+    source: https://www.arlp.com/wp-json/wp/v2/types
+    detail: >-
+      Cloudflare returned an "Attention Required! | Cloudflare" interstitial on a rapid sequential request
+      and served the JSON normally after a short pause. Not a documented policy; an edge behaviour a
+      consumer must pace around.
+  - kind: page-size-ceiling
+    value: 100
+    unit: records per request
+    source: https://www.arlp.com/wp-json/wp/v2/posts?per_page=999
+    status: 400
+    detail: >-
+      'per_page must be between 1 (inclusive) and 100 (inclusive)' - returned verbatim in the
+      rest_invalid_param error body. A pagination bound, not a rate limit.
 policies:
-  - name: Contractual Limits
-    description: Throughput is dimensioned per bilateral data-integration agreement.
-  - name: Backoff Strategy
-    description: Implement exponential backoff with jitter on retryable errors.
+  - name: No published rate-limit policy
+    description: ARLP publishes no rate-limit documentation. Pace requests to the robots.txt Crawl-delay of 10s.
+  - name: Backoff strategy
+    description: >-
+      On an HTTP 403 Cloudflare challenge, back off and retry after several seconds rather than immediately;
+      the challenge is transient and no Retry-After is supplied.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

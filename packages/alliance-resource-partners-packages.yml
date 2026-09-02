@@ -1,0 +1,52 @@
+generated: '2026-09-01'
+method: searched
+source: >-
+  registry.npmjs.org search, pypi.org/pypi/arlp/json, rubygems.org/api/v1/gems/arlp.json,
+  crates.io/api/v1/crates?q=arlp, api.github.com/search/users?q=alliance-resource-partners - all probed
+  2026-09-01
+note: >-
+  Alliance Resource Partners publishes no client libraries. Every registry below was queried and returned
+  either a 404 or only unrelated third-party packages that merely contain the string "arlp"
+  (react-native-arlp-lib-yolopolo on npm, ruqu-qarlp on crates.io - neither is ARLP's). There is no
+  api-evangelist-visible GitHub organization for the company (GitHub user search returned total_count 0).
+  No SDKs pointer is emitted: package_count is 0, and an SDKs pointer would assert a client library the
+  company does not ship.
+package_count: 0
+packages: []
+registries_probed:
+  - registry: npm
+    query: https://registry.npmjs.org/-/v1/search?text=arlp
+    status: 200
+    first_party_hits: 0
+    version: null
+    published: null
+    note: Returns only unrelated third-party packages; no ARLP-authored package exists.
+  - registry: pypi
+    query: https://pypi.org/pypi/arlp/json
+    status: 404
+    first_party_hits: 0
+    version: null
+    published: null
+  - registry: rubygems
+    query: https://rubygems.org/api/v1/gems/arlp.json
+    status: 404
+    first_party_hits: 0
+    version: null
+    published: null
+  - registry: crates.io
+    query: https://crates.io/api/v1/crates?q=arlp
+    status: 200
+    first_party_hits: 0
+    version: null
+    published: null
+    note: Only ruqu-qarlp, an unrelated crate.
+  - registry: github
+    query: https://api.github.com/search/users?q=alliance-resource-partners
+    status: 200
+    first_party_hits: 0
+    version: null
+    published: null
+    note: No GitHub organization.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

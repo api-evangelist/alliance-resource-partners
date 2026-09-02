@@ -1,0 +1,42 @@
+generated: '2026-09-01'
+method: probed
+source: live probes of www.arlp.com and investor.arlp.com on 2026-09-01
+note: >-
+  Alliance Resource Partners publishes no API versioning policy, no deprecation policy, no SLA and no status
+  page. This is a recorded absence, not an unchecked field: each item below names what was probed. No
+  StatusPage and no Deprecation pointer is emitted, because neither surface exists.
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  docs: null
+  policy_published: false
+  detail: >-
+    The version is a WordPress REST namespace segment. ARLP has published no statement about how or whether
+    that namespace will change; the cadence belongs to the WordPress project, not to ARLP.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No RFC 8594 Sunset or Deprecation header was observed on any response. No deprecation policy page exists
+    on arlp.com (the site has 12 published pages in total; none is a developer or policy page).
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  url: null
+  published: false
+  probed:
+    - url: https://status.arlp.com
+      status: NXDOMAIN
+    - url: https://www.arlp.com/status
+      status: 404
+deprecated_operations: []
+support:
+  contact: https://www.arlp.com/contact/
+  detail: A corporate contact form. There is no developer support channel.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

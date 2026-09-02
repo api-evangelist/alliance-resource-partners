@@ -6,57 +6,158 @@ deliveryModel:
   model: unknown
   open_source: false
   commercial: false
-  callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  callable_host: true
+  label: No product API. The one callable host is the corporate site's read-only CMS surface.
+  confidence: medium
   source:
-  - none
-  generated: '2026-08-28'
-  method: derived
+  - https://www.arlp.com/wp-json/
+  generated: '2026-09-01'
+  method: probed
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: free
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Unknown
-  confidence: low
+  try_now: true
+  public: true
+  label: Anonymous public read - no key, no registration, no plans
+  confidence: high
   source:
+  - https://www.arlp.com/wp-json/
   - plans
-  generated: '2026-07-22'
-  method: derived
+  generated: '2026-09-01'
+  method: probed
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/alliance-resource-partners.png
 tags:
   - Coal
   - Mining
   - Energy
+  - Royalties
+  - Natural Resources
+  - Content
+  - Corporate
 description: >-
-  Alliance Resource Partners is a major US corporation and Fortune 1000 company. The Alliance Resource Partners API provides programmatic access to its platform services, data, and integrations for enterprise customers and partners.
+  Alliance Resource Partners, L.P. (NASDAQ: ARLP) is a diversified energy and natural-resource partnership
+  headquartered in Tulsa, Oklahoma. It is the largest coal producer in the eastern United States, operating
+  underground and surface mines across the Illinois Basin and Appalachia, and it holds an oil and gas
+  mineral and royalty portfolio alongside a growth-investment arm covering other energy and
+  infrastructure ventures. ARLP runs no developer program: it publishes no API documentation, no OpenAPI,
+  no SDK, no API pricing and no developer portal, and the api.arlp.com and developer.arlp.com hosts once
+  listed here do not resolve in DNS. The only machine-readable interface the company serves is the
+  read-only WordPress REST API behind its corporate site at www.arlp.com, which returns ARLP's own
+  published corporate content - business segments, sustainability posture, careers, contact and legal
+  pages, media, taxonomy and cross-content search - anonymously as JSON. Any operational data exchange with
+  ARLP (customer contracts, rail and barge logistics, mine reporting, royalty statements) is a bilateral
+  commercial agreement, not a published API product.
 created: '2026-04-19'
-modified: '2026-04-19'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
-  - aid: alliance-resource-partners:alliance-resource-partners-api
-    name: Alliance Resource Partners API
+  - aid: alliance-resource-partners:alliance-resource-partners-content-api
+    name: Alliance Resource Partners Content API
     tags:
+      - Content
+      - Corporate
       - Coal
-      - Mining
       - Energy
+      - Search
     image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://api.arlp.com
-    humanURL: https://developer.arlp.com
-    properties:
-      - url: https://developer.arlp.com/docs
-        type: Documentation
+    baseURL: https://www.arlp.com/wp-json
+    humanURL: https://www.arlp.com/
     description: >-
-      The Alliance Resource Partners API provides access to platform services and data for enterprise integration and automation.
+      The public, read-only WordPress REST API served by Alliance Resource Partners' corporate site at
+      www.arlp.com. Anonymous - no key, no OAuth, no registration - and verified returning HTTP 200 on
+      2026-09-01. It exposes ARLP's twelve published corporate pages (About Us, Our Businesses, Coal
+      Operations, Royalties, Other Growth Investments, Sustainability, the Corporate Responsibility Report,
+      Careers, Contact, Privacy Statement, Terms of Use), the media library, blog posts and comments, the
+      category and tag taxonomies, cross-content search, and self-describing type/taxonomy/status discovery
+      endpoints. This is a corporate-content API, not a coal, logistics or royalty API. The OpenAPI below is
+      DERIVED by API Evangelist from ARLP's own live route discovery document at https://www.arlp.com/wp-json/
+      (saved verbatim alongside it); Alliance Resource Partners publishes no contract of its own.
+    properties:
+      - type: OpenAPI
+        url: openapi/_original/alliance-resource-partners-content-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-pages-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-posts-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-media-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-taxonomy-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-comments-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-authors-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-search-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-discovery-api-openapi.yml
+      - type: OpenAPI
+        url: openapi/alliance-resource-partners-oembed-api-openapi.yml
+      - type: Overlay
+        url: overlays/alliance-resource-partners-content-overlay.yaml
+      - type: Authentication
+        url: authentication/alliance-resource-partners-authentication.yml
+      - type: Conventions
+        url: conventions/alliance-resource-partners-conventions.yml
+      - type: ErrorCatalog
+        url: errors/alliance-resource-partners-problem-types.yml
+      - type: DataModel
+        url: data-model/alliance-resource-partners-data-model.yml
+      - type: Examples
+        url: examples/_index.yml
+      - type: RateLimits
+        url: rate-limits/alliance-resource-partners-rate-limits.yml
 common:
-  - type: DomainSecurity
-    url: security/alliance-resource-partners-domain-security.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/alliance-resource-partners-lp
   - type: Website
     url: https://www.arlp.com
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/alliance-resource-partners-lp
+  - type: Support
+    url: https://www.arlp.com/contact/
+  - type: TermsOfService
+    url: https://www.arlp.com/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.arlp.com/privacy-statement/
+  - type: InvestorRelations
+    url: https://investor.arlp.com/overview/default.aspx
+  - type: Authentication
+    url: authentication/alliance-resource-partners-authentication.yml
+  - type: Conventions
+    url: conventions/alliance-resource-partners-conventions.yml
+  - type: ErrorCatalog
+    url: errors/alliance-resource-partners-problem-types.yml
+  - type: DataModel
+    url: data-model/alliance-resource-partners-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alliance-resource-partners-lifecycle.yml
+  - type: Conformance
+    url: conformance/alliance-resource-partners-conformance.yml
+  - type: Packages
+    url: packages/alliance-resource-partners-packages.yml
+  - type: MCPServer
+    url: mcp/alliance-resource-partners-mcp.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/alliance-resource-partners-llms.txt
+  - type: Overlay
+    url: overlays/alliance-resource-partners-content-overlay.yaml
+  - type: Examples
+    url: examples/_index.yml
+  - type: RateLimits
+    url: rate-limits/alliance-resource-partners-rate-limits.yml
+  - type: Plans
+    url: plans/alliance-resource-partners-plans-pricing.yml
+  - type: FinOps
+    url: finops/alliance-resource-partners-finops.yml
+  - type: DomainSecurity
+    url: security/alliance-resource-partners-domain-security.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-01'
+  status: enriched
+  artifacts_added: 33
+  pass: local-v1

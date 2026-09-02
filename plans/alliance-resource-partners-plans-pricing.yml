@@ -3,46 +3,41 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Alliance Resource Partners
 providerId: alliance-resource-partners
+generated: '2026-09-01'
 created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-09-01'
+method: searched
+source: https://www.arlp.com/
+reconciled: true
 tags:
   - Coal
   - Mining
   - Energy
-description: Alliance Resource Partners (ARLP) is a coal-production and energy-royalty operator with no
-  public developer portal or API pricing. Any data integrations are bilateral commercial agreements (customer
-  EDI, mine telemetry, rail/barge logistics, royalty reporting) negotiated directly with ARLP partners.
-sources:
-  - https://www.arlp.com
-notes: No public API pricing surface. Plans below are placeholder partner-agreement shells; ARLP does
-  not publish a developer commercial offering.
-plans:
-  - id: alliance-resource-partners-partner
-    name: Customer / Partner Agreement
-    type: enterprise
-    description: Bilateral data-integration agreement covering customer EDI, mine telemetry, logistics,
-      or royalty-reporting feeds. Pricing is bespoke and negotiated.
-    entries:
-      - label: Integration Agreement
-        description: Negotiated data-integration agreement
-        name: integration_agreement
-        type: subscription
-        metric: contract
-        limit: -1
-        timeFrame: year
-        geo: US
-        unit: 1
-        price: contact provider
-        userMultiplied: false
-    elements:
-      - name: Customer EDI Feed
-      - name: Mine Telemetry Data Feed
-      - name: Logistics / Rail / Barge Reporting
-      - name: Royalty Reporting
+description: >-
+  Alliance Resource Partners, L.P. publishes no API plans and no API pricing of any kind. The company's
+  entire public web presence is 12 pages (enumerated live from its own API at
+  https://www.arlp.com/wp-json/wp/v2/pages and captured at examples/alliance-resource-partners-pages.json);
+  none of them is a pricing, plans, developer or signup page. The one machine-readable surface ARLP serves -
+  the read-only WordPress REST API behind www.arlp.com - is free, anonymous and unmetered, with no
+  registration, no key and no commercial tier attached to it. Any data integration with ARLP (customer
+  contracts, rail and barge logistics, royalty reporting) is a bilateral commercial agreement negotiated
+  directly, not a published API product.
+notes: >-
+  Rewritten 2026-09-01. This file previously carried a placeholder "Customer / Partner Agreement" plan
+  written by the 2026-05-04 bulk sweep. That plan was never published by ARLP and has been removed: an
+  honest plan_count of 0 is the correct measurement, and a shell plan read as a commercial offering the
+  company does not make.
+plan_count: 0
+plans: []
+evidence:
+  - url: https://www.arlp.com/wp-json/wp/v2/pages?per_page=100&_fields=id,slug,link,title
+    status: 200
+    finding: 12 published pages, none commercial or developer-facing.
+  - url: https://www.arlp.com/
+    status: 200
+  - url: https://developer.arlp.com
+    status: NXDOMAIN
+    finding: No developer portal exists.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

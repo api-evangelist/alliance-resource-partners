@@ -1,0 +1,48 @@
+generated: '2026-09-01'
+method: probed
+source: https://www.arlp.com/wp-json/
+docs: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
+note: >-
+  Alliance Resource Partners publishes no authentication documentation, because it publishes no developer
+  program. This profile is read from the live WordPress REST API discovery document served by www.arlp.com,
+  which declares its own supported authentication scheme, plus live anonymous probes of every route.
+summary:
+  types: [none, http]
+  api_key_in: []
+  oauth2_flows: []
+  public_read: true
+  gated_write: true
+schemes:
+  - name: anonymous
+    type: none
+    description: >-
+      Every GET operation in openapi/ was verified to return HTTP 200 with no credential on 2026-09-01. The
+      entire published read surface of the ARLP Content API is anonymous. No API key, no bearer token, no
+      OAuth, no registration and no rate-limit key.
+    sources: [https://www.arlp.com/wp-json/]
+  - name: application-passwords
+    type: http
+    scheme: basic
+    description: >-
+      WordPress Application Passwords, declared by the site's own discovery document at
+      https://www.arlp.com/wp-json/ under `authentication.application-passwords`. Credentials are issued
+      per WordPress user from the wp-admin authorize-application screen and sent as HTTP Basic. This gates
+      the write surface and the administrative namespaces; it is a WordPress account credential, not a
+      developer-program API key, and ARLP does not issue one to third parties.
+    authorization_endpoint: https://www.arlp.com/wp-admin/authorize-application.php
+    sources: [https://www.arlp.com/wp-json/]
+gated_surface_evidence:
+  - url: https://www.arlp.com/wp-json/wp/v2/settings
+    status: 401
+    body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+  - url: https://www.arlp.com/wp-json/wp-abilities/v1/abilities
+    status: 401
+    note: The WordPress Abilities API namespace is registered but requires authentication.
+  - url: https://www.arlp.com/wp-json/wp/v2/block-types
+    status: 401
+cors:
+  access_control_allow_headers: [Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type]
+  access_control_expose_headers: [X-WP-Total, X-WP-TotalPages, Link]
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

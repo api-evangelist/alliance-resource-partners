@@ -1,0 +1,110 @@
+[
+    {
+        "id": 460,
+        "modified": "2026-07-02T14:03:06",
+        "slug": "royalties",
+        "link": "https://www.arlp.com/our-businesses/royalties/",
+        "title": {
+            "rendered": "Royalties"
+        }
+    },
+    {
+        "id": 439,
+        "modified": "2026-02-27T20:16:28",
+        "slug": "coal-operations",
+        "link": "https://www.arlp.com/our-businesses/coal-operations/",
+        "title": {
+            "rendered": "Coal Operations"
+        }
+    },
+    {
+        "id": 359,
+        "modified": "2026-06-10T14:39:30",
+        "slug": "new-ventures",
+        "link": "https://www.arlp.com/our-businesses/new-ventures/",
+        "title": {
+            "rendered": "Other Growth Investments"
+        }
+    },
+    {
+        "id": 212,
+        "modified": "2026-08-07T18:53:58",
+        "slug": "privacy-statement",
+        "link": "https://www.arlp.com/privacy-statement/",
+        "title": {
+            "rendered": "Privacy Statement"
+        }
+    },
+    {
+        "id": 205,
+        "modified": "2023-07-11T13:37:05",
+        "slug": "terms-of-use",
+        "link": "https://www.arlp.com/terms-of-use/",
+        "title": {
+            "rendered": "Terms of Use"
+        }
+    },
+    {
+        "id": 50,
+        "modified": "2023-06-07T20:58:03",
+        "slug": "corporate-responsibility-report",
+        "link": "https://www.arlp.com/sustainability/corporate-responsibility-report/",
+        "title": {
+            "rendered": "Corporate Responsibility Report"
+        }
+    },
+    {
+        "id": 26,
+        "modified": "2024-12-20T13:06:52",
+        "slug": "contact",
+        "link": "https://www.arlp.com/contact/",
+        "title": {
+            "rendered": "Contact Us"
+        }
+    },
+    {
+        "id": 25,
+        "modified": "2024-07-30T18:42:14",
+        "slug": "careers",
+        "link": "https://www.arlp.com/careers/",
+        "title": {
+            "rendered": "Careers"
+        }
+    },
+    {
+        "id": 24,
+        "modified": "2025-07-18T13:37:28",
+        "slug": "sustainability",
+        "link": "https://www.arlp.com/sustainability/",
+        "title": {
+            "rendered": "Sustainability"
+        }
+    },
+    {
+        "id": 23,
+        "modified": "2025-02-27T22:19:32",
+        "slug": "our-businesses",
+        "link": "https://www.arlp.com/our-businesses/",
+        "title": {
+            "rendered": "Our Businesses"
+        }
+    },
+    {
+        "id": 19,
+        "modified": "2026-06-10T14:32:12",
+        "slug": "about-us",
+        "link": "https://www.arlp.com/about-us/",
+        "title": {
+            "rendered": "About Us"
+        }
+    },
+    {
+        "id": 18,
+        "modified": "2026-07-02T13:45:52",
+        "slug": "alliance",
+        "link": "https://www.arlp.com/",
+        "title": {
+            "rendered": "Home"
+        }
+    }
+]

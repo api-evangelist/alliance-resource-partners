@@ -1,0 +1,341 @@
+openapi: 3.1.0
+info:
+  title: Alliance Resource Partners Comments API
+  version: wp/v2
+  summary: The public, read-only WordPress REST API behind www.arlp.com.
+  description: 'Alliance Resource Partners, L.P. (ARLP, NASDAQ: ARLP) publishes no developer portal and no product
+    API. Its corporate site at www.arlp.com runs on WordPress (WP Engine) and serves the standard WordPress REST
+    API anonymously at https://www.arlp.com/wp-json/. That surface is a real, machine-readable, unauthenticated
+    read API over ARLP corporate content: the 12 published site pages (About Us, Our Businesses / Coal Operations
+    / Royalties / Other Growth Investments, Sustainability, Careers, Contact, Privacy Statement, Terms of Use),
+    the media library, blog posts and comments, the category and tag taxonomies, cross-content search, and the self-describing
+    type/taxonomy/status discovery endpoints. This document is DERIVED from the live route discovery document at
+    https://www.arlp.com/wp-json/ (saved verbatim alongside it as alliance-resource-partners-wp-routes-original.json);
+    every path, method, parameter and parameter schema here comes from that document, and every collection path
+    listed was verified to return HTTP 200 anonymously on 2026-09-01. Write methods (POST/PUT/PATCH/DELETE) and
+    the administrative namespaces (settings, block-types, wp-abilities, wp-site-health, wp-block-editor, redirection,
+    cky, wpe, wp-table-builder, yoast) are deliberately excluded: they exist on the host but return HTTP 401 rest_forbidden
+    anonymously and require WordPress Application Passwords. This is a corporate-content API. It is NOT a coal,
+    mine-telemetry, logistics or royalty-reporting API - ARLP publishes none, and any such integration is a bilateral
+    commercial agreement. Alliance Resource Partners did not author or publish this description; API Evangelist
+    derived it from ARLP''s own live discovery document.'
+  contact:
+    name: Alliance Resource Partners
+    url: https://www.arlp.com/contact/
+  termsOfService: https://www.arlp.com/terms-of-use/
+  x-provenance:
+    method: derived
+    source: https://www.arlp.com/wp-json/
+    derived: '2026-09-01'
+    note: Derived by API Evangelist from the live WordPress route discovery document served by www.arlp.com; not
+      published by Alliance Resource Partners.
+servers:
+- url: https://www.arlp.com/wp-json
+  description: Production
+security:
+- {}
+tags:
+- name: Comments
+  description: Approved comments on ARLP posts.
+paths:
+  /wp/v2/comments:
+    get:
+      operationId: listComments
+      summary: List approved comments
+      description: List approved comments on the public Alliance Resource Partners WordPress REST API at www.arlp.com.
+        Verified HTTP 200 anonymously on 2026-09-01.
+      tags:
+      - Comments
+      security:
+      - {}
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Limit response to comments published after a given ISO8601 compliant date.
+      - name: author
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Limit result set to comments assigned to specific user IDs. Requires authorization.
+      - name: author_email
+        in: query
+        required: false
+        schema:
+          type: string
+          format: email
+        description: Limit result set to that from a specific author email. Requires authorization.
+      - name: author_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Ensure result set excludes comments assigned to specific user IDs. Requires authorization.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Limit response to comments published before a given ISO8601 compliant date.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Ensure result set excludes specific IDs.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Limit result set to specific IDs.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Offset the result set by a specific number of items.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: Order sort attribute ascending or descending.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - date
+          - date_gmt
+          - id
+          - include
+          - post
+          - parent
+          - type
+          default: date_gmt
+        description: Sort collection by comment attribute.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        description: Current page of the collection.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Limit result set to comments of specific parent IDs.
+      - name: parent_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Ensure result set excludes specific parent IDs.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The password for the post if it is password protected.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+        description: Maximum number of items to be returned in result set.
+      - name: post
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Limit result set to comments assigned to specific post IDs.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limit results to those matching a string.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          default: approve
+        description: Limit result set to comments assigned a specific status. Requires authorization.
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: comment
+        description: Limit result set to comments assigned a specific type. Requires authorization.
+      responses:
+        '200':
+          description: Successful response.
+          headers:
+            X-WP-Total:
+              description: Total number of matching records.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (rel="next" / rel="prev").
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required for this resource (rest_forbidden).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource matched the request (rest_no_route / rest_post_invalid_id).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /wp/v2/comments/{id}:
+    get:
+      operationId: getComment
+      summary: Retrieve a single comment
+      description: Retrieve a single comment on the public Alliance Resource Partners WordPress REST API at www.arlp.com.
+        Route present in the live discovery document; the collection route was verified 200 anonymously on 2026-09-01,
+        this item route resolved and returned a WordPress JSON error envelope rather than an HTML 404.
+      tags:
+      - Comments
+      security:
+      - {}
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier segment matched by the WordPress route regex.
+        schema:
+          type: integer
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The password for the parent post of the comment (if the post is password protected).
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required for this resource (rest_forbidden).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource matched the request (rest_no_route / rest_post_invalid_id).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: The WordPress REST API error envelope, observed live on www.arlp.com on 2026-09-01.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_no_route, rest_forbidden, rest_invalid_param, rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages (rest_invalid_param only).
+            details:
+              type: object
+              description: Per-parameter structured detail (rest_invalid_param only).
+      required:
+      - code
+      - message
+      - data

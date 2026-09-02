@@ -1,0 +1,132 @@
+generated: '2026-09-01'
+method: derived
+source: >-
+  openapi/_original/alliance-resource-partners-content-openapi.yml and the live type/taxonomy discovery
+  responses at examples/alliance-resource-partners-content-types.json and
+  examples/alliance-resource-partners-taxonomies.json
+note: >-
+  The entity graph of the reachable Alliance Resource Partners Content API. Derived from ARLP's own
+  self-describing discovery endpoints, which enumerate the registered content types and taxonomies and the
+  types each taxonomy applies to. ARLP registers no custom post type: there is no press-release, mine,
+  operation or royalty entity in this API. The content model is stock WordPress.
+entities:
+  - name: Page
+    rest_base: pages
+    id_type: integer
+    count_observed: 12
+    description: >-
+      The published corporate pages: Home, About Us, Our Businesses, Coal Operations, Royalties, Other Growth
+      Investments, Sustainability, Corporate Responsibility Report, Careers, Contact Us, Privacy Statement,
+      Terms of Use.
+    key_fields: [id, slug, link, title, content, excerpt, parent, menu_order, modified, status]
+  - name: Post
+    rest_base: posts
+    id_type: integer
+    count_observed: 1
+    description: WordPress blog posts. The site carries a single post ("Hello world!", 2023) and is not an active blog.
+    key_fields: [id, slug, link, title, content, excerpt, author, categories, tags, date, modified]
+  - name: MediaItem
+    rest_base: media
+    id_type: integer
+    description: Media library attachments - images and documents used across arlp.com.
+    key_fields: [id, slug, source_url, media_type, mime_type, media_details, post]
+  - name: Category
+    rest_base: categories
+    id_type: integer
+    description: The category taxonomy, applied to Post.
+    key_fields: [id, name, slug, parent, count, taxonomy]
+  - name: Tag
+    rest_base: tags
+    id_type: integer
+    count_observed: 0
+    description: The post_tag taxonomy, applied to Post. No terms are registered.
+    key_fields: [id, name, slug, count, taxonomy]
+  - name: Comment
+    rest_base: comments
+    id_type: integer
+    description: Approved comments. All observed comments are spam on the single 2023 post.
+    key_fields: [id, post, parent, author_name, content, date, status]
+  - name: Author
+    rest_base: users
+    id_type: integer
+    description: >-
+      Authors of published content. WordPress exposes only users who have authored a published record; this
+      endpoint is the standard authorship projection, not a directory of ARLP employees.
+    key_fields: [id, name, slug, link, avatar_urls]
+  - name: ContentType
+    rest_base: types
+    id_type: string
+    description: Registry of the 13 registered content types and their rest_base / rest_namespace routing.
+  - name: Taxonomy
+    rest_base: taxonomies
+    id_type: string
+    description: Registry of the 5 registered taxonomies (category, post_tag, nav_menu, wp_pattern_category, table_tags).
+  - name: Status
+    rest_base: statuses
+    id_type: string
+    description: Registry of registered post statuses.
+  - name: SearchResult
+    rest_base: search
+    id_type: integer
+    description: A flattened cross-type search projection - id, title, url, type, subtype - over published content.
+relationships:
+  - from: Post
+    to: Category
+    kind: has_many
+    via: categories
+  - from: Post
+    to: Tag
+    kind: has_many
+    via: tags
+  - from: Post
+    to: Author
+    kind: belongs_to
+    via: author
+  - from: Post
+    to: MediaItem
+    kind: has_one
+    via: featured_media
+  - from: Post
+    to: Comment
+    kind: has_many
+    via: replies (_links)
+  - from: Comment
+    to: Post
+    kind: belongs_to
+    via: post
+  - from: Comment
+    to: Comment
+    kind: belongs_to
+    via: parent
+  - from: Page
+    to: Page
+    kind: belongs_to
+    via: parent
+  - from: Page
+    to: MediaItem
+    kind: has_one
+    via: featured_media
+  - from: MediaItem
+    to: Post
+    kind: belongs_to
+    via: post
+  - from: Category
+    to: Category
+    kind: belongs_to
+    via: parent
+  - from: Taxonomy
+    to: ContentType
+    kind: has_many
+    via: types
+  - from: SearchResult
+    to: Page
+    kind: belongs_to
+    via: subtype + id
+id_conventions:
+  detail: >-
+    All record identifiers are unsigned integers assigned by WordPress and shared across a single wp_posts
+    table, so Page, Post and MediaItem ids are drawn from one sequence and never collide. Type and taxonomy
+    identifiers are string slugs.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

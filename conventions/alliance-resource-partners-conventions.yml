@@ -1,0 +1,108 @@
+generated: '2026-09-01'
+method: probed
+source: >-
+  https://www.arlp.com/wp-json/ (route discovery document) plus live anonymous requests and response headers
+  observed on 2026-09-01
+note: >-
+  Alliance Resource Partners documents no API conventions, because it runs no developer program. Everything
+  below was read off the live surface: the route index's own argument schemas, and the headers and bodies
+  returned by real requests. Nothing here is asserted from the WordPress project's documentation without
+  having been observed on this host.
+authentication:
+  style: none for reads; HTTP Basic (WordPress Application Passwords) for the gated write surface
+  detail: authentication/alliance-resource-partners-authentication.yml
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  detail: >-
+    The version is a URL namespace segment (/wp-json/wp/v2/...). The host registers 11 namespaces; the
+    content surface is wp/v2 and oembed/1.0. No version header, no date-pinning, no version negotiation.
+  namespaces_observed:
+    [oembed/1.0, wpe/cache-plugin/v1, wpe_sign_on_plugin/v1, cky/v1, redirection/v1, yoast/v1,
+     wp-table-builder, wp/v2, wp-site-health/v1, wp-block-editor/v1, wp-abilities/v1]
+pagination:
+  style: page-and-size
+  params:
+    page: 1-based page number, default 1
+    per_page: page size, default 10, maximum 100 (enforced; 999 returns rest_invalid_param)
+    offset: absolute record offset, alternative to page
+  response_headers:
+    X-WP-Total: total number of matching records
+    X-WP-TotalPages: total number of pages
+    Link: RFC 8288 links with rel="next" and rel="prev"
+  observed:
+    request: https://www.arlp.com/wp-json/wp/v2/pages?per_page=2
+    x_wp_total: 12
+    x_wp_totalpages: 6
+    link: '<https://www.arlp.com/wp-json/wp/v2/pages?per_page=2&page=2>; rel="next"'
+sparse_fields:
+  supported: true
+  param: _fields
+  detail: >-
+    _fields=id,slug,link,title returns only those properties. Verified live against /wp/v2/pages on
+    2026-09-01 and used to capture examples/alliance-resource-partners-pages.json.
+field_expansion:
+  supported: true
+  param: _embed
+  detail: >-
+    _embed inlines linked resources (author, featured media, terms) under _embedded, following the _links
+    HAL-style relation map each record carries.
+hypermedia:
+  style: HAL-like _links
+  detail: Every record carries a _links object with self, collection, about, author, replies and curies.
+filtering_and_ordering:
+  params: [search, after, before, modified_after, modified_before, order, orderby, include, exclude, slug, status, categories, tags]
+  detail: Read from the per-route `args` schemas in the live discovery document.
+request_tracing:
+  request_id_header: none
+  detail: No request-id or correlation header is returned. Cloudflare cf-ray is present but is edge infrastructure, not an API contract.
+error_envelope:
+  format: wordpress-rest (not RFC 9457)
+  shape: '{code, message, data:{status, params?, details?}}'
+  detail: errors/alliance-resource-partners-problem-types.yml
+rate_limit_signaling:
+  headers: none
+  detail: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was observed on any 200 response. The only published
+    throughput signal on this host is `Crawl-delay: 10` in https://www.arlp.com/robots.txt, and an
+    intermittent Cloudflare bot-management challenge (HTTP 403, "Attention Required! | Cloudflare") on rapid
+    sequential requests. See rate-limits/alliance-resource-partners-rate-limits.yml.
+caching:
+  headers_observed:
+    cache-control: max-age=600, must-revalidate
+    x-cacheable: SHORT
+    x-cache: MISS
+    cf-cache-status: MISS
+  detail: WP Engine edge caching in front of Cloudflare; 10-minute TTL on API responses.
+idempotency:
+  supported: na
+  detail: >-
+    The published surface is read-only. Every operation in openapi/ is a GET, which is idempotent by HTTP
+    semantics. There is no write surface available to a third party, so there is no idempotency-key contract
+    to document and none is missing. No Idempotency pointer is emitted.
+dry_run_mode:
+  supported: na
+  detail: No write surface; nothing to rehearse.
+reversibility:
+  supported: na
+  grade: na
+  detail: >-
+    The Alliance Resource Partners Content API is read-only for every party that can actually reach it: all
+    22 published operations are GETs and every write route on the host returns HTTP 401 rest_forbidden to an
+    anonymous caller (verified against /wp/v2/settings and /wp-abilities/v1/abilities on 2026-09-01). An
+    agent cannot take an action here, so there is no action to take back. No cancel, refund, void, reverse,
+    undo, rollback or restore operation exists on the reachable surface, and no reversal window is stated
+    anywhere by ARLP - so none is asserted here.
+  write_surfaces: []
+  evidence:
+    - url: https://www.arlp.com/wp-json/wp/v2/settings
+      status: 401
+      note: rest_forbidden - the write/admin surface is not reachable without a WordPress account credential.
+cross_links:
+  errors: errors/alliance-resource-partners-problem-types.yml
+  lifecycle: lifecycle/alliance-resource-partners-lifecycle.yml
+  authentication: authentication/alliance-resource-partners-authentication.yml
+  rate_limits: rate-limits/alliance-resource-partners-rate-limits.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

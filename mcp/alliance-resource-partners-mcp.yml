@@ -1,0 +1,56 @@
+generated: '2026-09-01'
+method: derived
+status: candidate
+source: openapi/_original/alliance-resource-partners-content-openapi.yml
+note: >-
+  Alliance Resource Partners ships NO MCP server. This is a DERIVED candidate tool list, computed from the
+  operations of the read-only Content API so that the surface is at least describable to an agent. No
+  endpoint is asserted and none was guessed. Searched for a published server on 2026-09-01: no MCP mention
+  in ARLP's 12 site pages, no /.well-known/oauth-protected-resource (404 on www.arlp.com), no /mcp route in
+  the live WordPress route index (253 routes, 11 namespaces - none is an MCP namespace), no npm or registry
+  package, no GitHub organization.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: derived
+server:
+  name: alliance-resource-partners
+  transport: null
+  url: null
+tools:
+  - name: list_pages
+    description: List the published corporate pages on arlp.com.
+    source_operation: openapi/alliance-resource-partners-pages-api-openapi.yml#listPages
+  - name: get_page
+    description: Retrieve one arlp.com corporate page by id.
+    source_operation: openapi/alliance-resource-partners-pages-api-openapi.yml#getPage
+  - name: search_content
+    description: Search published arlp.com content across pages, posts and media.
+    source_operation: openapi/alliance-resource-partners-search-api-openapi.yml#search
+  - name: list_posts
+    description: List blog posts on arlp.com.
+    source_operation: openapi/alliance-resource-partners-posts-api-openapi.yml#listPosts
+  - name: get_post
+    description: Retrieve one arlp.com blog post by id.
+    source_operation: openapi/alliance-resource-partners-posts-api-openapi.yml#getPost
+  - name: list_media
+    description: List items in the arlp.com media library.
+    source_operation: openapi/alliance-resource-partners-media-api-openapi.yml#listMedia
+  - name: get_media_item
+    description: Retrieve one media item by id.
+    source_operation: openapi/alliance-resource-partners-media-api-openapi.yml#getMediaItem
+  - name: list_categories
+    description: List the post categories registered on arlp.com.
+    source_operation: openapi/alliance-resource-partners-taxonomy-api-openapi.yml#listCategories
+  - name: list_content_types
+    description: List the content types arlp.com registers, with their REST routing.
+    source_operation: openapi/alliance-resource-partners-discovery-api-openapi.yml#listContentTypes
+  - name: get_oembed
+    description: Get the oEmbed representation of an arlp.com URL.
+    source_operation: openapi/alliance-resource-partners-oembed-api-openapi.yml#getOembed
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

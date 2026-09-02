@@ -1,0 +1,55 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Alliance Resource Partners Content API
+  version: 1.0.0
+extends: openapi/_original/alliance-resource-partners-content-openapi.yml
+x-provenance:
+  generated: '2026-09-01'
+  method: generated
+  source: openapi/_original/alliance-resource-partners-content-openapi.yml
+  note: >-
+    Captures API Evangelist's enhancements over the derived Alliance Resource Partners contract without
+    mutating it. The base document is itself derived from ARLP's live WordPress route discovery document;
+    this overlay records the classification, provenance and agent-facing annotations added on top.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: alliance-resource-partners
+      x-apievangelist-contract-origin: derived-from-wp-route-discovery
+      x-apievangelist-provider-published-contract: false
+      x-apievangelist-surface-class: corporate-content
+      x-apievangelist-note: >-
+        Not a product API. This is the corporate website's CMS read surface, which happens to be the only
+        machine-readable interface Alliance Resource Partners serves.
+  - target: $.info
+    update:
+      x-agentic-access:
+        action_class: connected
+        consequence: read
+        audience: null
+        token_ttl_seconds: 3600
+        audit: optional
+        human_in_the_loop: not-required
+        note: >-
+          Every operation in this contract is an anonymous GET over published corporate content. Nothing
+          here can change state, spend money or trigger a physical action.
+  - target: $.paths.*.get
+    update:
+      x-idempotent: true
+      x-reversible: na
+      x-auth-required: false
+  - target: $.paths['/wp/v2/search'].get
+    update:
+      x-apievangelist-agent-entrypoint: true
+      x-apievangelist-note: >-
+        The most useful single operation for an agent: one call spans every published content type on
+        arlp.com and returns a flat id/title/url/type projection.
+  - target: $.paths['/wp/v2/pages'].get
+    update:
+      x-apievangelist-agent-entrypoint: true
+      x-apievangelist-record-count-observed: 12
+  - target: $.components.schemas.Error
+    update:
+      x-apievangelist-format: wordpress-rest
+      x-apievangelist-not-rfc9457: true
+      x-apievangelist-catalog: errors/alliance-resource-partners-problem-types.yml

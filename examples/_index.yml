@@ -1,0 +1,42 @@
+generated: '2026-09-01'
+method: probed
+source: https://www.arlp.com/wp-json/
+note: >-
+  Real, unmodified responses captured from the live Alliance Resource Partners Content API on 2026-09-01.
+  Every file is the body of one anonymous HTTP 200, pretty-printed only. Nothing here is synthetic.
+examples:
+  - file: alliance-resource-partners-pages.json
+    operation: openapi/alliance-resource-partners-pages-api-openapi.yml#listPages
+    request: https://www.arlp.com/wp-json/wp/v2/pages?per_page=100&_fields=id,slug,link,title,modified
+    status: 200
+    description: All 12 published ARLP corporate pages, using the _fields sparse-field parameter.
+  - file: alliance-resource-partners-content-types.json
+    operation: openapi/alliance-resource-partners-discovery-api-openapi.yml#listContentTypes
+    request: https://www.arlp.com/wp-json/wp/v2/types
+    status: 200
+    description: The 13 registered content types with their rest_base and rest_namespace routing.
+  - file: alliance-resource-partners-taxonomies.json
+    operation: openapi/alliance-resource-partners-discovery-api-openapi.yml#listTaxonomies
+    request: https://www.arlp.com/wp-json/wp/v2/taxonomies
+    status: 200
+    description: The 5 registered taxonomies and the content types each applies to.
+  - file: alliance-resource-partners-categories.json
+    operation: openapi/alliance-resource-partners-taxonomy-api-openapi.yml#listCategories
+    request: https://www.arlp.com/wp-json/wp/v2/categories
+    status: 200
+    description: The post category terms.
+  - file: alliance-resource-partners-search-coal.json
+    operation: openapi/alliance-resource-partners-search-api-openapi.yml#search
+    request: https://www.arlp.com/wp-json/wp/v2/search?search=coal
+    status: 200
+    description: Cross-content search for "coal" - the flat id/title/url/type/subtype projection.
+  - file: alliance-resource-partners-statuses.json
+    operation: openapi/alliance-resource-partners-discovery-api-openapi.yml#listStatuses
+    request: https://www.arlp.com/wp-json/wp/v2/statuses
+    status: 200
+    description: Registered post statuses visible anonymously.
+  - file: alliance-resource-partners-oembed.json
+    operation: openapi/alliance-resource-partners-oembed-api-openapi.yml#getOembed
+    request: https://www.arlp.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.arlp.com%2F
+    status: 200
+    description: oEmbed 1.0 rich representation of the arlp.com home page.

@@ -1,0 +1,76 @@
+generated: '2026-09-01'
+method: probed
+source: live HTTP probes of every Alliance Resource Partners host
+note: >-
+  Every named /.well-known/ path in the pipeline's closed list was probed on both ARLP hosts. www.arlp.com
+  (WordPress on WP Engine, behind Cloudflare) returns a clean HTML 404 for every path INCLUDING the negative
+  control, so it is not a catch-all and the 404s are honest absences. investor.arlp.com (Q4 Inc's hosted
+  investor-relations platform, allianceresource2023rd.q4web.com) is a catch-all: it answered HTTP 200 with an
+  11-byte body for every /.well-known/ path probed, including a negative-control path that cannot exist, so
+  every "hit" on that host is discarded. NO WellKnown and NO SecurityTxt pointer is emitted for this provider:
+  nothing returned a real document.
+hit_count: 0
+hosts:
+  - host: https://www.arlp.com
+    path_echo_control: passed
+    soft_404_control:
+      path: /.well-known/alliance-resource-partners-negative-control-7f3ab91c.json
+      status: 404
+      bytes: 70996
+      note: HTML 404 page. Host does not answer 200 for arbitrary /.well-known/ paths.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/ucp.json
+        status: 404
+      - path: /.well-known/acp.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://investor.arlp.com
+    path_echo_control: failed
+    soft_404_control:
+      path: /.well-known/alliance-resource-partners-negative-control-7f3ab91c.json
+      status: 200
+      bytes: 11
+      content_type: text/html; charset=utf-8
+      note: >-
+        Answered 200 with an 11-byte HTML body for a path that cannot exist. Every 200 on this host is
+        therefore discarded as a catch-all, not a served document.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        catch_all: true
+        note: 11-byte HTML body, not RFC 9116 text. Discarded by the negative control.
+      - path: /.well-known/agent-card.json
+        status: 200
+        catch_all: true
+        note: 11-byte HTML body, not an AgentCard JSON object. Discarded by the negative control.
+      - path: /.well-known/agent.json
+        status: 200
+        catch_all: true
+        note: 11-byte HTML body. Discarded by the negative control.
+      - path: /.well-known/aauth-resource.json
+        status: 200
+        catch_all: true
+        note: 11-byte HTML body, no issuer or jwks_uri. Discarded by the negative control.
+      - path: /.well-known/api-catalog
+        status: 301
+      - path: /.well-known/openid-configuration
+        status: 301
+      - path: /.well-known/oauth-authorization-server
+        status: 301

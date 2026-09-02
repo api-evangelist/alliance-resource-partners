@@ -1,0 +1,429 @@
+openapi: 3.1.0
+info:
+  title: Alliance Resource Partners Posts API
+  version: wp/v2
+  summary: The public, read-only WordPress REST API behind www.arlp.com.
+  description: 'Alliance Resource Partners, L.P. (ARLP, NASDAQ: ARLP) publishes no developer portal and no product
+    API. Its corporate site at www.arlp.com runs on WordPress (WP Engine) and serves the standard WordPress REST
+    API anonymously at https://www.arlp.com/wp-json/. That surface is a real, machine-readable, unauthenticated
+    read API over ARLP corporate content: the 12 published site pages (About Us, Our Businesses / Coal Operations
+    / Royalties / Other Growth Investments, Sustainability, Careers, Contact, Privacy Statement, Terms of Use),
+    the media library, blog posts and comments, the category and tag taxonomies, cross-content search, and the self-describing
+    type/taxonomy/status discovery endpoints. This document is DERIVED from the live route discovery document at
+    https://www.arlp.com/wp-json/ (saved verbatim alongside it as alliance-resource-partners-wp-routes-original.json);
+    every path, method, parameter and parameter schema here comes from that document, and every collection path
+    listed was verified to return HTTP 200 anonymously on 2026-09-01. Write methods (POST/PUT/PATCH/DELETE) and
+    the administrative namespaces (settings, block-types, wp-abilities, wp-site-health, wp-block-editor, redirection,
+    cky, wpe, wp-table-builder, yoast) are deliberately excluded: they exist on the host but return HTTP 401 rest_forbidden
+    anonymously and require WordPress Application Passwords. This is a corporate-content API. It is NOT a coal,
+    mine-telemetry, logistics or royalty-reporting API - ARLP publishes none, and any such integration is a bilateral
+    commercial agreement. Alliance Resource Partners did not author or publish this description; API Evangelist
+    derived it from ARLP''s own live discovery document.'
+  contact:
+    name: Alliance Resource Partners
+    url: https://www.arlp.com/contact/
+  termsOfService: https://www.arlp.com/terms-of-use/
+  x-provenance:
+    method: derived
+    source: https://www.arlp.com/wp-json/
+    derived: '2026-09-01'
+    note: Derived by API Evangelist from the live WordPress route discovery document served by www.arlp.com; not
+      published by Alliance Resource Partners.
+servers:
+- url: https://www.arlp.com/wp-json
+  description: Production
+security:
+- {}
+tags:
+- name: Posts
+  description: WordPress blog posts on www.arlp.com.
+paths:
+  /wp/v2/posts:
+    get:
+      operationId: listPosts
+      summary: List blog posts
+      description: List blog posts on the public Alliance Resource Partners WordPress REST API at www.arlp.com.
+        Verified HTTP 200 anonymously on 2026-09-01.
+      tags:
+      - Posts
+      security:
+      - {}
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Limit response to posts published after a given ISO8601 compliant date.
+      - name: author
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Limit result set to posts assigned to specific authors.
+      - name: author_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Ensure result set excludes posts assigned to specific authors.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Limit response to posts published before a given ISO8601 compliant date.
+      - name: categories
+        in: query
+        required: false
+        schema:
+          type: object
+        description: Limit result set to items with specific terms assigned in the categories taxonomy.
+      - name: categories_exclude
+        in: query
+        required: false
+        schema:
+          type: object
+        description: Limit result set to items except those with specific terms assigned in the categories taxonomy.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Ensure result set excludes specific IDs.
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - standard
+            - aside
+            - chat
+            - gallery
+            - link
+            - image
+            - quote
+            - status
+            - video
+            - audio
+        description: Limit result set to items assigned one or more given formats.
+      - name: ignore_sticky
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+        description: Whether to ignore sticky posts or not.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: Limit result set to specific IDs.
+      - name: modified_after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Limit response to posts modified after a given ISO8601 compliant date.
+      - name: modified_before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Limit response to posts modified before a given ISO8601 compliant date.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Offset the result set by a specific number of items.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: Order sort attribute ascending or descending.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - author
+          - date
+          - id
+          - include
+          - modified
+          - parent
+          - relevance
+          - slug
+          - include_slugs
+          - title
+          default: date
+        description: Sort collection by post attribute.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        description: Current page of the collection.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+        description: Maximum number of items to be returned in result set.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Limit results to those matching a string.
+      - name: search_columns
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - post_title
+            - post_content
+            - post_excerpt
+        description: Array of column names to be searched.
+      - name: search_semantics
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - exact
+        description: How to interpret the search input.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: Limit result set to posts with one or more specific slugs.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - publish
+            - future
+            - draft
+            - pending
+            - private
+            - trash
+            - auto-draft
+            - inherit
+            - request-pending
+            - request-confirmed
+            - request-failed
+            - request-completed
+            - acf-disabled
+            - any
+          default: publish
+        description: Limit result set to posts assigned one or more statuses.
+      - name: sticky
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: Limit result set to items that are sticky.
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: object
+        description: Limit result set to items with specific terms assigned in the tags taxonomy.
+      - name: tags_exclude
+        in: query
+        required: false
+        schema:
+          type: object
+        description: Limit result set to items except those with specific terms assigned in the tags taxonomy.
+      - name: tax_relation
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - AND
+          - OR
+        description: Limit result set based on relationship between multiple taxonomies.
+      responses:
+        '200':
+          description: Successful response.
+          headers:
+            X-WP-Total:
+              description: Total number of matching records.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+            Link:
+              description: RFC 8288 pagination links (rel="next" / rel="prev").
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required for this resource (rest_forbidden).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource matched the request (rest_no_route / rest_post_invalid_id).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /wp/v2/posts/{id}:
+    get:
+      operationId: getPost
+      summary: Retrieve a single blog post
+      description: Retrieve a single blog post on the public Alliance Resource Partners WordPress REST API at www.arlp.com.
+        Verified HTTP 200 anonymously on 2026-09-01.
+      tags:
+      - Posts
+      security:
+      - {}
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Identifier segment matched by the WordPress route regex.
+        schema:
+          type: integer
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: Scope under which the request is made; determines fields present in response.
+      - name: excerpt_length
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Override the default excerpt length.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The password for the post if it is password protected.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Authentication required for this resource (rest_forbidden).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No route or resource matched the request (rest_no_route / rest_post_invalid_id).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: The WordPress REST API error envelope, observed live on www.arlp.com on 2026-09-01.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_no_route, rest_forbidden, rest_invalid_param, rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages (rest_invalid_param only).
+            details:
+              type: object
+              description: Per-parameter structured detail (rest_invalid_param only).
+      required:
+      - code
+      - message
+      - data

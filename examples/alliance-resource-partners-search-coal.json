@@ -1,0 +1,272 @@
+[
+    {
+        "id": 439,
+        "title": "Coal Operations",
+        "url": "https://www.arlp.com/our-businesses/coal-operations/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/439",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 460,
+        "title": "Royalties",
+        "url": "https://www.arlp.com/our-businesses/royalties/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/460",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 359,
+        "title": "Other Growth Investments",
+        "url": "https://www.arlp.com/our-businesses/new-ventures/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/359",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 19,
+        "title": "About Us",
+        "url": "https://www.arlp.com/about-us/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/19",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 23,
+        "title": "Our Businesses",
+        "url": "https://www.arlp.com/our-businesses/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/23",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 24,
+        "title": "Sustainability",
+        "url": "https://www.arlp.com/sustainability/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/24",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 25,
+        "title": "Careers",
+        "url": "https://www.arlp.com/careers/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/25",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 26,
+        "title": "Contact Us",
+        "url": "https://www.arlp.com/contact/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/26",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    },
+    {
+        "id": 18,
+        "title": "Home",
+        "url": "https://www.arlp.com/",
+        "type": "post",
+        "subtype": "page",
+        "_links": {
+            "self": [
+                {
+                    "embeddable": true,
+                    "href": "https://www.arlp.com/wp-json/wp/v2/pages/18",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "about": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/types/page"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https://www.arlp.com/wp-json/wp/v2/search"
+                }
+            ]
+        }
+    }
+]
