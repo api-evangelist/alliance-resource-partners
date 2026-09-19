@@ -112,6 +112,8 @@ apis:
   humanURL: https://www.arlp.com/
   baseURL: https://www.arlp.com/wp-json
   tags:
+  - oEmbed
+  tags_raw:
   - o Embed
   properties:
   - type: OpenAPI
