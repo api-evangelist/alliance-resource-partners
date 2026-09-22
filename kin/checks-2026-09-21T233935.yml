@@ -2,8 +2,8 @@
 kin_checks:
   slug: alliance-resource-partners
   schema_version: 0.22.0
-  scored_at: '2026-09-19'
-  run_ts: 2026-09-19T193153
+  scored_at: '2026-09-21'
+  run_ts: 2026-09-21T233935
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
@@ -175,28 +175,28 @@ kin_checks:
     earned: 1.25
   - id: operations_summary_coverage
     status: partial
-    earned: 1.5
-    detail: 2 of 2 openapi documents pass
+    earned: 0.75
+    detail: 1 of 2 openapi documents pass
   - id: operations_description_coverage
     status: partial
-    earned: 1.5
-    detail: 2 of 2 openapi documents pass
+    earned: 0.75
+    detail: 1 of 2 openapi documents pass
   - id: operations_tagged
     status: partial
-    earned: 1.0
-    detail: 2 of 2 openapi documents pass
+    earned: 0.5
+    detail: 1 of 2 openapi documents pass
   - id: operations_operation_ids
     status: partial
-    earned: 1.0
-    detail: 2 of 2 openapi documents pass
+    earned: 0.5
+    detail: 1 of 2 openapi documents pass
   - id: response_coverage
     status: partial
     earned: 0.63
     detail: 1 of 2 openapi documents pass
   - id: error_responses_documented
     status: partial
-    earned: 1.0
-    detail: 2 of 2 openapi documents pass
+    earned: 0.5
+    detail: 1 of 2 openapi documents pass
   - id: examples_present
     status: partial
     earned: 0.25
