@@ -1,0 +1,39 @@
+{
+  "provider": "alliance-resource-partners",
+  "sources": [
+    "_original/alliance-resource-partners-content-openapi.yml"
+  ],
+  "outputs": [
+    "alliance-resource-partners-authors-api-openapi.yml",
+    "alliance-resource-partners-comments-api-openapi.yml",
+    "alliance-resource-partners-discovery-api-openapi.yml",
+    "alliance-resource-partners-media-api-openapi.yml",
+    "alliance-resource-partners-pages-api-openapi.yml",
+    "alliance-resource-partners-posts-api-openapi.yml",
+    "alliance-resource-partners-search-api-openapi.yml",
+    "alliance-resource-partners-taxonomy-api-openapi.yml",
+    "alliance-resource-partners-oembed-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "alliance-resource-partners-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: alliance-resource-partners-o-embed-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 2 total)"
+  ],
+  "skipped": [
+    "alliance-resource-partners-authors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-o-embed-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alliance-resource-partners-taxonomy-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}
