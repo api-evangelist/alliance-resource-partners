@@ -11,6 +11,9 @@ artifacts:
   conventions/alliance-resource-partners-conventions.yml:
     method: unknown
     evidence: no authorship recorded
+  data-license/alliance-resource-partners-data-license.yml:
+    method: harvested
+    evidence: declared in the artifact
   data-model/alliance-resource-partners-data-model.yml:
     method: derived
     evidence: declared in the artifact
@@ -56,7 +59,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -125,6 +128,9 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/alliance-resource-partners-lifecycle.yml:
     method: unknown
     evidence: no authorship recorded
@@ -152,6 +158,9 @@ artifacts:
   plans/alliance-resource-partners-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
+  privacy/alliance-resource-partners-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/alliance-resource-partners-rate-limits.yml:
     method: unknown
     evidence: no authorship recorded
@@ -169,6 +178,9 @@ artifacts:
     evidence: declared in the artifact
   skills/alliance-resource-partners-page-change-monitoring.md:
     method: generated
+    evidence: declared in the artifact
+  terms/alliance-resource-partners-terms-of-service.yml:
+    method: harvested
     evidence: declared in the artifact
   well-known/alliance-resource-partners-well-known.yml:
     method: unknown
